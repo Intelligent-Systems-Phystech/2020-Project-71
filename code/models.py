@@ -49,10 +49,10 @@ class Base(nn.Module):
         return self._model(x)
 
 
-def get_models(params):
+def get_models(params, device):
     models = {}
     for model_name, model_params in params.items():
-        model = Base(model_params)
+        model = Base(model_params).to(device)
         models[model_name] = model
 
         print('======================')

@@ -18,7 +18,9 @@ def get_losses(params):
     return losses
 
 
-def compute_losses(losses, models, x, y):
+def compute_losses(losses, models, x, y, training=False):
+    for model in models.values():
+        model.train() if training else model.eval()
     result = {}
     encoded_input = models['encoder_input'](x)
     if 'reconstruct_input' in losses:
